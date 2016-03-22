@@ -5,7 +5,6 @@ var config = require('./webpack.dev.config');
 console.log('Starting dev server...\n');
 
 new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
   hot: true, // With hot reloading
   inline: false,
   historyApiFallback: true,

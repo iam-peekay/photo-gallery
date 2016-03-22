@@ -6,11 +6,11 @@ var port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 
 // default catch all
-app.use('*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(port, function(error) {
+app.listen(port, (error) => {
   if (error) {
     console.error(error)
   } else {

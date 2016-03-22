@@ -4,13 +4,12 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = function(options) {
-  var entry, jsLoaders, plugins, cssLoaders;
-
+  var entry, plugins, cssLoaders;
   // Define configuration if production
   if (options.prod) {
     // Define entry file
     entry = [
-      path.resolve(__dirname, 'public/js/app.js') // Start with js/app.js
+      path.join(__dirname, 'public/js/app.js') // Start with js/app.js
     ];
     cssLoaders = ExtractTextPlugin.extract('style-loader', 'css-loader!');
     // Define plugins we want to use
@@ -50,7 +49,7 @@ module.exports = function(options) {
     entry = [
       "webpack-dev-server/client?http://localhost:3000", // Needed for hot reloading
       "webpack/hot/only-dev-server",
-      path.resolve(__dirname, 'public/js/app.js') // Start with js/app.js
+      path.join(__dirname, 'public/js/app.js') // Start with js/app.js
     ];
     cssLoaders = 'style-loader!css-loader!';
     // Only plugin is the hot module replacement plugin
@@ -66,7 +65,7 @@ module.exports = function(options) {
   return {
     entry: entry,
     output: { // Compile into js/build.js
-      path: path.resolve(__dirname, 'build'),
+      path: path.join(__dirname, 'build'),
       filename: "js/bundle.js"
     },
     module: {
@@ -79,6 +78,7 @@ module.exports = function(options) {
       loaders: [{
           test: /\.js$/, // Transform all .js files
           loader: 'babel', // using these loaders
+          query: { presets:['react'] },
           exclude: path.join(__dirname, '/node_modules/') // except for the node_modules folder
         }, {
           test:   /\.css$/, // Transform all .css files
@@ -90,6 +90,24 @@ module.exports = function(options) {
       ]
     },
     plugins: plugins,
+    postcss: function() {
+      return [
+        require('postcss-import')({ // Import all the css files...
+          glob: true,
+          onImport: function (files) {
+              files.forEach(this.addDependency); // ...and add dependecies from the main.css files to the other css files...
+          }.bind(this) // ...so they get hot–reloaded when something changes...
+        }),
+        require('postcss-simple-vars')(), // ...then replace the variables...
+        require('postcss-focus')(), // ...add a :focus to ever :hover...
+        require('autoprefixer')({ // ...and add vendor prefixes...
+          browsers: ['last 2 versions', 'IE > 8'] // ...supporting the last 2 major browser versions and IE 8 and up...
+        }),
+        require('postcss-reporter')({ // This plugin makes sure we get warnings in the console
+          clearMessages: true
+        })
+      ];
+    },
     target: "web", // Make web variables accessible to webpack, e.g. window
     stats: false, // Don't show stats in the console
     progress: true
