@@ -1,12 +1,12 @@
 /**
  * Combine all reducers in this file
  */
-import loadAlbum from './loadAlbum';
+import album from './album';
 
 // Combine our reducers
 import { combineReducers } from 'redux';
 const rootReducer = combineReducers({
-  loadAlbum
+  album
 });
 
 export default rootReducer;

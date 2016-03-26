@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as ActionCreators from './../actions/index';
 
 class MainPage extends Component {
   constructor(props) {
@@ -11,7 +12,9 @@ class MainPage extends Component {
   }
 
   handleThumbnailClick() {
-
+    const { dispatch } = this.props;
+    const action = ActionCreators.updateCurrentImage(4);
+    dispatch(action);
   }
 
   goToPrev() {
@@ -22,7 +25,41 @@ class MainPage extends Component {
 
   }
 
+  renderThumbnails() {
+    const { photos } = this.props;
+
+    const thumbnailContainerStyle = {
+      background: '#ccc',
+      width: 896,
+      height: 157,
+      margin: 'auto',
+    };
+
+    const thumbnailBlockStyle = {
+      display: 'inline-block',
+      margin: 14,
+    };
+
+    const imageStyle = {
+      height: 75,
+      width: 100,
+      position: 'relative',
+    };
+
+    const thumbnailPhotos = photos.map(function(photo) {
+      return <div style={thumbnailBlockStyle} key={photo.id} onClick={this.handleThumbnailClick}><img style={imageStyle} src={`public/images/${photo.thumb_url}`} /></div>;
+    }.bind(this));
+
+    return (
+      <div style={thumbnailContainerStyle}>
+        {thumbnailPhotos}
+      </div>
+    );
+  }
+
+
   renderImage() {
+    console.log(this.props.currentImage);
     const currentImageStyle = {
       backgroundImage: `url(public/images/${this.props.currentImage.url})`,
       backgroundPosition: 'center',
@@ -35,22 +72,32 @@ class MainPage extends Component {
     const headerStyle = {
       color: 'white',
       margin: 0,
-      padding: 20,
       width: 896,
       height: 100,
       textAlign: 'center',
+      fontSize: 40,
       background: 'rgba(25, 25, 25, .5)'
     };
 
     const footerStyle = {
       position: 'absolute',
-      color: 'white',
-      bottom: -282,
+      color: '#fff',
+      bottom: -280,
       margin: 0,
       width: 896,
-      height: 100,
+      height: 115,
       textAlign: 'center',
       background: 'rgba(25, 25, 25, .5)'
+    };
+
+    const footerHeaderStyle = {
+      fontSize: 28,
+      color: '#fff',
+    };
+
+    const footerBodyStyle = {
+      fontSize: 18,
+      color: '#fff',
     };
 
     const rightArrowStyle = {
@@ -58,14 +105,14 @@ class MainPage extends Component {
     };
 
     return (
-      <div style={{padding: 40}}>
+      <div style={{paddingTop: 40}}>
         <div style={currentImageStyle}>
-          <h1 style={headerStyle}>{this.props.albumName}</h1>
+          <p style={headerStyle}>{this.props.albumName}</p>
           <img src="public/images/right.png" style={rightArrowStyle}/>
           <img src="public/images/left.png" />
           <div style={footerStyle}>
-            <h3> {this.props.currentImage.title}</h3>
-            <p>`Taken on {this.props.currentImage.date} in the {this.props.currentImage.location}`</p>
+            <p style={footerHeaderStyle}> {this.props.currentImage.title}</p>
+            <p style={footerBodyStyle}>`Taken on {this.props.currentImage.date} in the {this.props.currentImage.location}`</p>
           </div>
         </div>
       </div>
@@ -73,7 +120,7 @@ class MainPage extends Component {
   }
 
   render() {
-    const props = this.props;
+    // const props = this.props;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -82,18 +129,7 @@ class MainPage extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-1">{props.photos[0].thumb_url}</div>
-          <div className="col-md-1">.col-md-1</div>
-          <div className="col-md-1">.col-md-1</div>
-          <div className="col-md-1">.col-md-1</div>
-          <div className="col-md-1">.col-md-1</div>
-          <div className="col-md-1">.col-md-1</div>
-          <div className="col-md-1">.col-md-1</div>
-          <div className="col-md-1">.col-md-1</div>
-          <div className="col-md-1">.col-md-1</div>
-          <div className="col-md-1">.col-md-1</div>
-          <div className="col-md-1">.col-md-1</div>
-          <div className="col-md-1">.col-md-1</div>
+          {this.renderThumbnails()}
         </div>
       </div>
     );
@@ -102,9 +138,9 @@ class MainPage extends Component {
 
 function select(state) {
   return {
-    albumName: state.loadAlbum.albumName !== undefined ? state.loadAlbum.albumName : 'Default',
-    photos: state.loadAlbum.photos !== undefined ? state.loadAlbum.photos : [],
-    currentImage: state.loadAlbum.photos !== undefined ? state.loadAlbum.photos[0] : {},
+    albumName: state.album.albumName !== undefined ? state.album.albumName : 'Default',
+    photos: state.album.photos !== undefined ? state.album.photos : [],
+    currentImage: state.album.currentImage !== undefined ? state.album.currentImage : {},
   };
 }
 
