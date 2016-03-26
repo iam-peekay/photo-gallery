@@ -1,0 +1,5 @@
+@charset 'UTF-8';
+
+/* Components */
+@import 'components/thumbnail.css';
+@import 'components/mainpage.css';

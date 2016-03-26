@@ -43,42 +43,6 @@ class MainPage extends Component {
   renderImage() {
     const currentImageStyle = {
       backgroundImage: `url(public/images/${this.props.currentImage.url})`,
-      backgroundPosition: 'center',
-      backgroundSize: 'auto',
-      width: 896,
-      height: 672,
-      margin: 'auto',
-    };
-
-    const headerStyle = {
-      color: 'white',
-      margin: 0,
-      width: 896,
-      height: 100,
-      textAlign: 'center',
-      fontSize: 40,
-      background: 'rgba(25, 25, 25, .5)'
-    };
-
-    const footerStyle = {
-      position: 'relative',
-      color: '#fff',
-      bottom: -380,
-      margin: 0,
-      width: 896,
-      height: 115,
-      textAlign: 'center',
-      background: 'rgba(25, 25, 25, .5)'
-    };
-
-    const footerHeaderStyle = {
-      fontSize: 28,
-      color: '#fff',
-    };
-
-    const footerBodyStyle = {
-      fontSize: 18,
-      color: '#fff',
     };
 
     const rightArrowStyle = {
@@ -87,13 +51,13 @@ class MainPage extends Component {
 
     return (
       <div>
-        <div style={currentImageStyle}>
-          <p style={headerStyle}>{this.props.albumName}</p>
+        <div style={currentImageStyle} className="currentImage">
+          <p className="imageHeader" >{this.props.albumName}</p>
           <img src="public/images/right.png" style={rightArrowStyle} onClick={this.goToNext}/>
           <img src="public/images/left.png" onClick={this.goToPrev}/>
-          <div style={footerStyle}>
-            <p style={footerHeaderStyle}> {this.props.currentImage.title}</p>
-            <p style={footerBodyStyle}>Taken on {this.props.currentImage.date} in the {this.props.currentImage.location}</p>
+          <div className="imageFooter">
+            <p className="imageFooterTitle"> {this.props.currentImage.title}</p>
+            <p className="imageFooterBody">Taken on {this.props.currentImage.date} in the {this.props.currentImage.location}</p>
           </div>
         </div>
       </div>
@@ -102,7 +66,7 @@ class MainPage extends Component {
 
   render() {
     return (
-      <div className="container" style={{padding: 20}}>
+      <div className="container galleryContainer">
         <div className="row">
           <div>
             {this.renderImage()}

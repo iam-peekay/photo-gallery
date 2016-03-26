@@ -12,30 +12,10 @@ export default class ThumbnailList extends Component {
   }
 
   render() {
-    const thumbnailNoHighlightStyle = {
-      display: 'inline-block',
-      margin: 14,
-    };
-
-    const thumbnailContainerStyle = {
-      background: '#ccc',
-      width: 896,
-      height: 120,
-      margin: 'auto',
-    };
-
-    const thumbnailHighlightStyle = {
-      display: 'inline-block',
-      margin: 14,
-      boxShadow: '3px 3px 12px #666',
-      borderColor: '#C76C0C',
-      cursor: 'pointer'
-    };
-
     const thumbnailPhotos = this.props.photos.map(function(photo) {
       let thumbnail;
       if (photo.id === this.props.currentImage.id) {
-        thumbnail = (<div style={thumbnailHighlightStyle} key={photo.id}>
+        thumbnail = (<div className="thumbnailHighlight" key={photo.id}>
                      <Thumbnail
                       imageid={photo.id}
                       image={photo}
@@ -44,7 +24,7 @@ export default class ThumbnailList extends Component {
                      />
                      </div>);
       } else {
-        thumbnail = (<div style={thumbnailNoHighlightStyle} key={photo.id}>
+        thumbnail = (<div className="thumbnailNoHighlight" key={photo.id}>
                      <Thumbnail
                       imageid={photo.id}
                       image={photo}
@@ -55,9 +35,9 @@ export default class ThumbnailList extends Component {
       }
       return thumbnail;
     }.bind(this));
-    
+
     return (
-      <div style={thumbnailContainerStyle}>
+      <div className="thumbnailContainer">
         {thumbnailPhotos}
       </div>
     );

@@ -11,24 +11,12 @@ export default class Thumbnail extends Component {
   }
 
   render() {
-    const imageNotHighlightedStyle = {
-      height: 55,
-      width: 75,
-      position: 'relative',
-    };
-
-    const imageHighlightedStyle = {
-      height: 75,
-      width: 100,
-      position: 'relative',
-    };
-
     const image = this.props.highlightedImage ? (<img
-                                                  style={imageHighlightedStyle}
+                                                  className="imageHighlight"
                                                   src={`public/images/${this.props.image.thumb_url}`}
                                                   onClick={this.handleClick} />) : (
                                                  <img
-                                                  style={imageNotHighlightedStyle}
+                                                  className="imageNotHighlight"
                                                   src={`public/images/${this.props.image.thumb_url}`}
                                                   onClick={this.handleClick} />);
     return image;

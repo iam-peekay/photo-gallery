@@ -1,0 +1,42 @@
+.galleryContainer {
+  padding: 20px;
+}
+
+.currentImage {
+  background-position: center;
+  background-size: auto;
+  width: 896px;
+  height: 672px;
+  margin: auto;
+}
+
+.imageHeader {
+  color: #fff;
+  margin: 0px;
+  width: 896px;
+  height: 100px;
+  text-align: center;
+  font-size: 40px;
+  background: rgba(25, 25, 25, .5);
+}
+
+.imageFooter {
+  position: relative;
+  color: #fff;
+  bottom: -380px;
+  margin: 0px;
+  width: 896px;
+  height: 115px;
+  text-align: center;
+  background: rgba(25, 25, 25, .5);
+}
+
+.imageFooterTitle {
+  font-size: 28px;
+  color: #fff;
+}
+
+.imageFooterBody {
+  font-size: 18px;
+  color: #fff;
+}
