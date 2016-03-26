@@ -6,7 +6,7 @@ var port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 
 // default catch all
-app.use((req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 

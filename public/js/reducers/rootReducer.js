@@ -1,11 +1,12 @@
 /**
  * Combine all reducers in this file
  */
-import homeReducer from './homeReducer';
+import loadAlbum from './loadAlbum';
 
-// Replace line below once you have several reducers with
-// import { combineReducers } from 'redux';
-// const rootReducer = combineReducers({ homeReducer, yourReducer })
-const rootReducer = homeReducer;
+// Combine our reducers
+import { combineReducers } from 'redux';
+const rootReducer = combineReducers({
+  loadAlbum
+});
 
 export default rootReducer;
