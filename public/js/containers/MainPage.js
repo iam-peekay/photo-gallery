@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as ActionCreators from './../actions/index';
+import ThumbnailList from './../components/ThumbnailList';
 
 class MainPage extends Component {
   constructor(props) {
     super(props);
     this.goToNext = this.goToNext.bind(this);
     this.goToPrev = this.goToPrev.bind(this);
-    this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
+    this.thumbnailClick = this.thumbnailClick.bind(this);
     this.renderImage = this.renderImage.bind(this);
   }
 
-  handleThumbnailClick() {
+  thumbnailClick(id) {
     const { dispatch } = this.props;
-    const action = ActionCreators.updateCurrentImage(4);
+    const action = ActionCreators.updateCurrentImage(id);
     dispatch(action);
   }
 
@@ -25,41 +26,7 @@ class MainPage extends Component {
 
   }
 
-  renderThumbnails() {
-    const { photos } = this.props;
-
-    const thumbnailContainerStyle = {
-      background: '#ccc',
-      width: 896,
-      height: 157,
-      margin: 'auto',
-    };
-
-    const thumbnailBlockStyle = {
-      display: 'inline-block',
-      margin: 14,
-    };
-
-    const imageStyle = {
-      height: 75,
-      width: 100,
-      position: 'relative',
-    };
-
-    const thumbnailPhotos = photos.map(function(photo) {
-      return <div style={thumbnailBlockStyle} key={photo.id} onClick={this.handleThumbnailClick}><img style={imageStyle} src={`public/images/${photo.thumb_url}`} /></div>;
-    }.bind(this));
-
-    return (
-      <div style={thumbnailContainerStyle}>
-        {thumbnailPhotos}
-      </div>
-    );
-  }
-
-
   renderImage() {
-    console.log(this.props.currentImage);
     const currentImageStyle = {
       backgroundImage: `url(public/images/${this.props.currentImage.url})`,
       backgroundPosition: 'center',
@@ -120,7 +87,6 @@ class MainPage extends Component {
   }
 
   render() {
-    // const props = this.props;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -129,12 +95,23 @@ class MainPage extends Component {
           </div>
         </div>
         <div className="row">
-          {this.renderThumbnails()}
+          <ThumbnailList
+            thumbnailClick={this.thumbnailClick}
+            photos={this.props.photos}
+          />
         </div>
       </div>
     );
   }
 }
+
+MainPage.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  albumName: PropTypes.string.isRequired,
+  currentImage: PropTypes.object.isRequired,
+  photos: PropTypes.array.isRequired,
+};
+
 
 function select(state) {
   return {
