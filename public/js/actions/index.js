@@ -26,7 +26,17 @@ function errorLoadingAlbum(error) {
   };
 }
 
-export function fetchAlbum() {
+// export function fetchAlbum() {
+//   return dispatch => {
+//     dispatch(requestAlbumData());
+//     return fetch(`http://localhost:3000/gallery.json`)
+//       .then(response => response.json())
+//       .then(json => dispatch(receiveAlbumData(json)))
+//       .catch(error => dispatch(errorLoadingAlbum(error)));
+//   };
+// }
+
+export function initApp() {
   return dispatch => {
     dispatch(requestAlbumData());
     return fetch(`http://localhost:3000/gallery.json`)
