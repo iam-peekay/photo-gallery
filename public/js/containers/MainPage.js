@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as ActionCreators from './../actions/index';
 import ThumbnailList from './../components/ThumbnailList';
@@ -19,11 +19,25 @@ class MainPage extends Component {
   }
 
   goToPrev() {
-
+    const { dispatch } = this.props;
+    const { currentImage, photos } = this.props;
+    let prevPhotoId = Number(currentImage.id) - 1;
+    if (prevPhotoId < 1) {
+      prevPhotoId = photos.length;
+    }
+    const action = ActionCreators.updateCurrentImage(prevPhotoId);
+    dispatch(action);
   }
 
   goToNext() {
-
+    const { dispatch } = this.props;
+    const { currentImage, photos } = this.props;
+    let nextPhotoId = Number(currentImage.id) + 1;
+    if (nextPhotoId > photos.length) {
+      nextPhotoId = 1;
+    }
+    const action = ActionCreators.updateCurrentImage(nextPhotoId);
+    dispatch(action);
   }
 
   renderImage() {
@@ -47,9 +61,9 @@ class MainPage extends Component {
     };
 
     const footerStyle = {
-      position: 'absolute',
+      position: 'relative',
       color: '#fff',
-      bottom: -280,
+      bottom: -380,
       margin: 0,
       width: 896,
       height: 115,
@@ -72,14 +86,14 @@ class MainPage extends Component {
     };
 
     return (
-      <div style={{paddingTop: 40}}>
+      <div>
         <div style={currentImageStyle}>
           <p style={headerStyle}>{this.props.albumName}</p>
-          <img src="public/images/right.png" style={rightArrowStyle}/>
-          <img src="public/images/left.png" />
+          <img src="public/images/right.png" style={rightArrowStyle} onClick={this.goToNext}/>
+          <img src="public/images/left.png" onClick={this.goToPrev}/>
           <div style={footerStyle}>
             <p style={footerHeaderStyle}> {this.props.currentImage.title}</p>
-            <p style={footerBodyStyle}>`Taken on {this.props.currentImage.date} in the {this.props.currentImage.location}`</p>
+            <p style={footerBodyStyle}>Taken on {this.props.currentImage.date} in the {this.props.currentImage.location}</p>
           </div>
         </div>
       </div>
@@ -88,7 +102,7 @@ class MainPage extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container" style={{padding: 20}}>
         <div className="row">
           <div>
             {this.renderImage()}
@@ -98,6 +112,7 @@ class MainPage extends Component {
           <ThumbnailList
             thumbnailClick={this.thumbnailClick}
             photos={this.props.photos}
+            currentImage={this.props.currentImage}
           />
         </div>
       </div>

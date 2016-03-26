@@ -12,7 +12,7 @@ export default class ThumbnailList extends Component {
   }
 
   render() {
-    const thumbnailBlockStyle = {
+    const thumbnailNoHighlightStyle = {
       display: 'inline-block',
       margin: 14,
     };
@@ -20,13 +20,42 @@ export default class ThumbnailList extends Component {
     const thumbnailContainerStyle = {
       background: '#ccc',
       width: 896,
-      height: 157,
+      height: 120,
       margin: 'auto',
     };
 
+    const thumbnailHighlightStyle = {
+      display: 'inline-block',
+      margin: 14,
+      boxShadow: '3px 3px 12px #666',
+      borderColor: '#C76C0C',
+      cursor: 'pointer'
+    };
+
     const thumbnailPhotos = this.props.photos.map(function(photo) {
-      return <div style={thumbnailBlockStyle} key={photo.id}> <Thumbnail imageid={photo.id} image={photo} handleThumbnailClick={this.handleThumbnailClick}/></div>;
+      let thumbnail;
+      if (photo.id === this.props.currentImage.id) {
+        thumbnail = (<div style={thumbnailHighlightStyle} key={photo.id}>
+                     <Thumbnail
+                      imageid={photo.id}
+                      image={photo}
+                      highlightedImage={true}
+                      handleThumbnailClick={this.handleThumbnailClick}
+                     />
+                     </div>);
+      } else {
+        thumbnail = (<div style={thumbnailNoHighlightStyle} key={photo.id}>
+                     <Thumbnail
+                      imageid={photo.id}
+                      image={photo}
+                      highlightedImage={false}
+                      handleThumbnailClick={this.handleThumbnailClick}
+                     />
+                     </div>);
+      }
+      return thumbnail;
     }.bind(this));
+    
     return (
       <div style={thumbnailContainerStyle}>
         {thumbnailPhotos}
@@ -38,4 +67,5 @@ export default class ThumbnailList extends Component {
 ThumbnailList.propTypes = {
   thumbnailClick: PropTypes.func.isRequired,
   photos: PropTypes.array.isRequired,
+  currentImage: PropTypes.object.isRequired,
 };

@@ -1,5 +1,5 @@
 /**
- * Combine all reducers in this file
+ * This file is used to combine all reducers
  */
 import album from './album';
 
