@@ -23,11 +23,11 @@ export default class Thumbnail extends Component {
     */
     const image = this.props.highlightedImage ? (<img
                                                   className="thumbnailImage imageHighlight"
-                                                  src={`public/images/${this.props.image.thumb_url}`}
+                                                  src={`src/images/${this.props.image.thumb_url}`}
                                                   onClick={this.handleClick} />) : (
                                                  <img
                                                   className="thumbnailImage imageNotHighlight"
-                                                  src={`public/images/${this.props.image.thumb_url}`}
+                                                  src={`src/images/${this.props.image.thumb_url}`}
                                                   onClick={this.handleClick} />);
     return image;
   }

@@ -6,13 +6,13 @@ const LOAD_ALBUM_SUCCESS = 'LOAD_ALBUM_SUCCESS';
 const LOAD_ALBUM_ERROR = 'LOAD_ALBUM_ERROR';
 const UPDATE_CURRENT_IMAGE = 'UPDATE_CURRENT_IMAGE';
 
-function requestAlbumData() {
+export function requestAlbumData() {
   return {
     type: LOAD_ALBUM_REQUEST,
   };
 }
 
-function receiveAlbumData(json) {
+export function receiveAlbumData(json) {
   return {
     type: LOAD_ALBUM_SUCCESS,
     albumName: json.album.name,
@@ -20,7 +20,7 @@ function receiveAlbumData(json) {
   };
 }
 
-function errorLoadingAlbum(error) {
+export function errorLoadingAlbum(error) {
   return {
     type: LOAD_ALBUM_ERROR,
     error: error,

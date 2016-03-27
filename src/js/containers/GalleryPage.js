@@ -49,15 +49,15 @@ class GalleryPage extends Component {
 
   // Renders our main image container, including header, footer and arrows
   renderImage() {
-    const currentImageUrl = `public/images/${this.props.currentImage.url}`;
+    const currentImageUrl = `src/images/${this.props.currentImage.url}`;
 
     return (
       <div>
         <div className="currentImageContainer">
           <img src={currentImageUrl} className="currentImage" />
           <p className="imageHeader" >{this.props.albumName}</p>
-          <img src="public/images/right.png" className="rightArrow" onClick={this.goToNext}/>
-          <img src="public/images/left.png" className="leftArrow" onClick={this.goToPrev}/>
+          <img src="src/images/right.png" className="rightArrow" onClick={this.goToNext}/>
+          <img src="src/images/left.png" className="leftArrow" onClick={this.goToPrev}/>
           <div className="imageFooter">
             <p className="imageFooterTitle"> {this.props.currentImage.title}</p>
             <p className="imageFooterBody">Taken on {this.props.currentImage.date} in the {this.props.currentImage.location}</p>
