@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
@@ -11,11 +11,4 @@ class App extends Component {
   }
 }
 
-function select(state) {
-  return {
-    data: state
-  };
-}
-
-// Wrap the component to inject dispatch and state into it
-export default connect(select)(App);
+export default App;

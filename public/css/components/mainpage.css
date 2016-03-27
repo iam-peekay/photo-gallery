@@ -5,7 +5,7 @@
 .currentImage {
   background-position: center;
   background-size: auto;
-  width: 896px;
+  width: 920px;
   height: 672px;
   margin: auto;
 }
@@ -15,7 +15,7 @@
   margin: 0px;
   vertical-align: bottom;
   line-height: 100px;
-  width: 896px;
+  width: 920px;
   height: 100px;
   text-align: center;
   font-size: 40px;
@@ -25,9 +25,9 @@
 .imageFooter {
   position: relative;
   color: #fff;
-  bottom: -380px;
+  bottom: -458px;
   margin: 0px;
-  width: 896px;
+  width: 920px;
   height: 115px;
   text-align: center;
   background: rgba(25, 25, 25, .5);
@@ -41,4 +41,16 @@
 .imageFooterBody {
   font-size: 18px;
   color: #fff;
+}
+
+.leftArrow {
+  textAlign: center;
+  position: absolute;
+  margin: 15% 4%;
+}
+
+.rightArrow {
+  textAlign: center;
+  position: absolute;
+  margin: 15% 54.8%;
 }

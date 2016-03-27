@@ -1,3 +1,7 @@
+/*
+  Main page which contains our photo gallery.
+*/
+
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as ActionCreators from './../actions/index';
@@ -12,12 +16,14 @@ class MainPage extends Component {
     this.renderImage = this.renderImage.bind(this);
   }
 
+  // Dispatch action to update current image if thumbnail is clicked
   thumbnailClick(id) {
     const { dispatch } = this.props;
     const action = ActionCreators.updateCurrentImage(id);
     dispatch(action);
   }
 
+  // Dispatch action to go to previous image if left arrow is clicked
   goToPrev() {
     const { dispatch } = this.props;
     const { currentImage, photos } = this.props;
@@ -29,6 +35,7 @@ class MainPage extends Component {
     dispatch(action);
   }
 
+  // Dispatch action to go to next image if right arrow is clicked
   goToNext() {
     const { dispatch } = this.props;
     const { currentImage, photos } = this.props;
@@ -40,31 +47,18 @@ class MainPage extends Component {
     dispatch(action);
   }
 
+  // Renders our main image container, including header, footer and arrows
   renderImage() {
     const currentImageStyle = {
       backgroundImage: `url(public/images/${this.props.currentImage.url})`,
-    };
-
-    const rightArrowStyle = {
-      textAlign: 'center',
-      position: 'absolute',
-      top: 335,
-      left: 1040,
-    };
-
-    const leftArrowStyle = {
-      textAlign: 'center',
-      position: 'absolute',
-      top: 335,
-      left: 320,
     };
 
     return (
       <div>
         <div style={currentImageStyle} className="currentImage">
           <p className="imageHeader" >{this.props.albumName}</p>
-          <img src="public/images/right.png" style={rightArrowStyle} onClick={this.goToNext}/>
-          <img src="public/images/left.png" style={leftArrowStyle} onClick={this.goToPrev}/>
+          <img src="public/images/right.png" className="rightArrow" onClick={this.goToNext}/>
+          <img src="public/images/left.png" className="leftArrow" onClick={this.goToPrev}/>
           <div className="imageFooter">
             <p className="imageFooterTitle"> {this.props.currentImage.title}</p>
             <p className="imageFooterBody">Taken on {this.props.currentImage.date} in the {this.props.currentImage.location}</p>
@@ -76,7 +70,7 @@ class MainPage extends Component {
 
   render() {
     return (
-      <div className="container galleryContainer">
+      <div className="container-fluid galleryContainer">
         <div className="row">
           <div>
             {this.renderImage()}
@@ -102,6 +96,7 @@ MainPage.propTypes = {
 };
 
 
+// Here we define the state variables that we want access to as props
 function select(state) {
   return {
     albumName: state.album.albumName !== undefined ? state.album.albumName : 'Default',
