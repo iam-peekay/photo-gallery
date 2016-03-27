@@ -2,20 +2,36 @@
   padding: 20px;
 }
 
-.currentImage {
+/*.currentImageContainer {
   background-position: center;
   background-size: auto;
   width: 920px;
   height: 672px;
   margin: auto;
+}*/
+
+.currentImageContainer {
+  width: 960px;
+  height: 720px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.currentImage {
+  display: block;
+  height: 100%;
+  position: absolute;
 }
 
 .imageHeader {
+  z-index: 1;
+  position: absolute;
   color: #fff;
   margin: 0px;
   vertical-align: bottom;
   line-height: 100px;
-  width: 920px;
+  width: 960px;
   height: 100px;
   text-align: center;
   font-size: 40px;
@@ -25,9 +41,9 @@
 .imageFooter {
   position: relative;
   color: #fff;
-  bottom: -458px;
+  top: 610px;
   margin: 0px;
-  width: 920px;
+  width: 960px;
   height: 115px;
   text-align: center;
   background: rgba(25, 25, 25, .5);
@@ -46,11 +62,11 @@
 .leftArrow {
   textAlign: center;
   position: absolute;
-  margin: 15% 4%;
+  margin: 34% 5%;
 }
 
 .rightArrow {
   textAlign: center;
   position: absolute;
-  margin: 15% 54.8%;
+  margin: 34% 86%;
 }

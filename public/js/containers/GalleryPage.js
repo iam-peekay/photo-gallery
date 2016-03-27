@@ -1,5 +1,5 @@
 /*
-  Main page which contains our photo gallery.
+  Main page which contains our image gallery.
 */
 
 import React, { Component, PropTypes } from 'react';
@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as ActionCreators from './../actions/index';
 import ThumbnailList from './../components/ThumbnailList';
 
-class MainPage extends Component {
+class GalleryPage extends Component {
   constructor(props) {
     super(props);
     this.goToNext = this.goToNext.bind(this);
@@ -49,13 +49,12 @@ class MainPage extends Component {
 
   // Renders our main image container, including header, footer and arrows
   renderImage() {
-    const currentImageStyle = {
-      backgroundImage: `url(public/images/${this.props.currentImage.url})`,
-    };
+    const currentImageUrl = `public/images/${this.props.currentImage.url}`;
 
     return (
       <div>
-        <div style={currentImageStyle} className="currentImage">
+        <div className="currentImageContainer">
+          <img src={currentImageUrl} className="currentImage" />
           <p className="imageHeader" >{this.props.albumName}</p>
           <img src="public/images/right.png" className="rightArrow" onClick={this.goToNext}/>
           <img src="public/images/left.png" className="leftArrow" onClick={this.goToPrev}/>
@@ -88,7 +87,7 @@ class MainPage extends Component {
   }
 }
 
-MainPage.propTypes = {
+GalleryPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   albumName: PropTypes.string.isRequired,
   currentImage: PropTypes.object.isRequired,
@@ -106,4 +105,4 @@ function select(state) {
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(MainPage);
+export default connect(select)(GalleryPage);
