@@ -1,3 +1,8 @@
+/*
+  This is the root of our app. We inject Redux store into our app
+  and set up our routes here. In our case, we only have one index
+  route which holds our image gallery component
+*/
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { Route, Router } from 'react-router';

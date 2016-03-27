@@ -1,6 +1,6 @@
 // import fetch from 'isomorphic-fetch';
 
-// Define the 3 types of requests
+// Define the action constants
 const LOAD_ALBUM_REQUEST = 'LOAD_ALBUM_REQUEST';
 const LOAD_ALBUM_SUCCESS = 'LOAD_ALBUM_SUCCESS';
 const LOAD_ALBUM_ERROR = 'LOAD_ALBUM_ERROR';
@@ -34,19 +34,13 @@ export function updateCurrentImage(id) {
   };
 }
 
-// export function fetchAlbum() {
-//   return dispatch => {
-//     dispatch(requestAlbumData());
-//     return fetch(`http://localhost:3000/gallery.json`)
-//       .then(response => response.json())
-//       .then(json => dispatch(receiveAlbumData(json)))
-//       .catch(error => dispatch(errorLoadingAlbum(error)));
-//   };
-// }
 
+// Initialize our app state with the images
 export function initApp() {
   return dispatch => {
     dispatch(requestAlbumData());
+    // Using asynchronous call to show how we would fetch images if
+    // they were stored in a database or some other location.
     return fetch(`http://localhost:3000/gallery.json`)
       .then(response => response.json())
       .then(json => dispatch(receiveAlbumData(json)))

@@ -25,17 +25,6 @@
   opacity: 1;
 }
 
-/*.thumbnailDivHighlight {
-  boxShadow: 3px 3px 12px #666;
-  borderColor: #C76C0C;
-  cursor: pointer;
-}*/
-
-/*.thumbnailDivNoHighlight {
-  display: inline-block;
-  margin: 14px;
-}*/
-
 .thumbnailContainer {
   background: #ccc;
   width: 960px;
@@ -44,14 +33,16 @@
   text-align: center;
 }
 
+.thumbnailImage {
+  position: relative;
+}
+
 .imageHighlight {
   height: 75px;
   width: 100px;
-  position: relative;
 }
 
 .imageNotHighlight {
   height: 55px;
   width: 75px;
-  position: relative;
 }

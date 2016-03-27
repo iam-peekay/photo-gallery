@@ -12,7 +12,7 @@
 
 .currentImageContainer {
   width: 960px;
-  height: 720px;
+  height: 700px;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
@@ -39,9 +39,10 @@
 }
 
 .imageFooter {
+  z-index: 1;
   position: relative;
   color: #fff;
-  top: 610px;
+  top: 584px;
   margin: 0px;
   width: 960px;
   height: 115px;
