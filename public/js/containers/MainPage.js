@@ -47,6 +47,16 @@ class MainPage extends Component {
 
     const rightArrowStyle = {
       textAlign: 'center',
+      position: 'absolute',
+      top: 335,
+      left: 1040,
+    };
+
+    const leftArrowStyle = {
+      textAlign: 'center',
+      position: 'absolute',
+      top: 335,
+      left: 320,
     };
 
     return (
@@ -54,7 +64,7 @@ class MainPage extends Component {
         <div style={currentImageStyle} className="currentImage">
           <p className="imageHeader" >{this.props.albumName}</p>
           <img src="public/images/right.png" style={rightArrowStyle} onClick={this.goToNext}/>
-          <img src="public/images/left.png" onClick={this.goToPrev}/>
+          <img src="public/images/left.png" style={leftArrowStyle} onClick={this.goToPrev}/>
           <div className="imageFooter">
             <p className="imageFooterTitle"> {this.props.currentImage.title}</p>
             <p className="imageFooterBody">Taken on {this.props.currentImage.date} in the {this.props.currentImage.location}</p>

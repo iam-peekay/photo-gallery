@@ -15,7 +15,7 @@ export default class ThumbnailList extends Component {
     const thumbnailPhotos = this.props.photos.map(function(photo) {
       let thumbnail;
       if (photo.id === this.props.currentImage.id) {
-        thumbnail = (<div className="thumbnailHighlight" key={photo.id}>
+        thumbnail = (<div className="thumbnailDiv" key={photo.id}>
                      <Thumbnail
                       imageid={photo.id}
                       image={photo}
@@ -24,7 +24,7 @@ export default class ThumbnailList extends Component {
                      />
                      </div>);
       } else {
-        thumbnail = (<div className="thumbnailNoHighlight" key={photo.id}>
+        thumbnail = (<div className="thumbnailDiv" key={photo.id}>
                      <Thumbnail
                       imageid={photo.id}
                       image={photo}

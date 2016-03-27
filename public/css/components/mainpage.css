@@ -13,6 +13,8 @@
 .imageHeader {
   color: #fff;
   margin: 0px;
+  vertical-align: bottom;
+  line-height: 100px;
   width: 896px;
   height: 100px;
   text-align: center;
