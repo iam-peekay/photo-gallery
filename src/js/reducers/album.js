@@ -19,7 +19,8 @@ function album(state = {}, action) {
       });
     case 'LOAD_ALBUM_ERROR':
       return merge({}, state, {
-        error: action.error
+        loadingAlbum: false,
+        error: action.error,
       });
     case 'UPDATE_CURRENT_IMAGE':
       const newCurrentImage = state.photos.filter((photo) => {

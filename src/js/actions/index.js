@@ -1,4 +1,4 @@
-// import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 
 // Define the action constants
 const LOAD_ALBUM_REQUEST = 'LOAD_ALBUM_REQUEST';
@@ -39,11 +39,12 @@ export function updateCurrentImage(id) {
 export function initApp() {
   return dispatch => {
     dispatch(requestAlbumData());
-    // Using asynchronous call to show how we would fetch images if
-    // they were stored in a database or some other location.
-    return fetch(`http://localhost:3000/gallery.json`)
-      .then(response => response.json())
-      .then(json => dispatch(receiveAlbumData(json)))
-      .catch(error => dispatch(errorLoadingAlbum(error)));
+    // Using an asynchronous call to show how we would fetch images if
+    // they were stored in a database or some external location.
+    return axios.get(`http://localhost:3000/gallery.json`)
+            .then(response => {
+              dispatch(receiveAlbumData(response.data));
+            })
+            .catch(error => dispatch(errorLoadingAlbum(error)));
   };
 }
