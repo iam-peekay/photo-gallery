@@ -1,15 +1,12 @@
 import React from 'react';
 import { expect } from 'chai';
-import ReactDOM from 'react-dom';
-import ReactTestUtils from 'react-addons-test-utils';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import ThumbnailList from './../components/ThumbnailList';
 import Thumbnail from './../components/Thumbnail';
 import * as albumJSON from './../../../gallery.json';
 
-describe('<ThumbnailList />', function() {
-
+describe('<ThumbnailList /> component', function() {
   beforeEach(function() {
     const onThumbnailClick = sinon.spy();
     this.component = shallow(
@@ -27,11 +24,9 @@ describe('<ThumbnailList />', function() {
   it('renders 1 div with className of thumbnailContainer', function() {
     expect(this.component.find('.thumbnailContainer')).to.have.lengthOf(1);
   });
-
 });
 
-describe('<Thumbnail />', function() {
-
+describe('<Thumbnail /> component', function() {
   beforeEach(function() {
     this.handleThumbnailClick = sinon.spy();
     this.component = shallow(
@@ -65,5 +60,26 @@ describe('<Thumbnail />', function() {
     expect(component.find('.imageHighlight')).to.have.lengthOf(1);
     expect(component.find('.imageNotHighlight')).to.have.lengthOf(0);
   });
-
 });
+
+//
+// describe('<GalleryPage /> component', function() {
+//
+//   beforeEach(function() {
+//     this.component = shallow(
+//           <GalleryPage
+//             photos={albumJSON.photos}
+//             currentImage={albumJSON.photos[0]}
+//             albumName={albumJSON.album.name}
+//             store={store}
+//            />);
+//   });
+//
+//   it('has photos prop which is an array of length 6', function() {
+//     expect(this.component.props().photos).to.be.instanceof(Array);
+//     expect(this.component.props().photos).to.have.lengthOf(6);
+//   });
+//
+//   it('renders 1 div with className of thumbnailContainer', function() {
+//     expect(this.component.props().currentImage).to.contain.all.keys(['id', 'url', 'thumb_url', 'date', 'title', 'location']);
+//   });

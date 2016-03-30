@@ -1,20 +1,24 @@
-import axios from 'axios';
+/*
+  Here we define the types of actions we want to create. Reducers
+  listen for these action events and update the state accordingly.
+  State is never updated in these action creators. Action creators
+  are just plain objects.
+*/
 
-// Define the action constants
-const LOAD_ALBUM_REQUEST = 'LOAD_ALBUM_REQUEST';
-const LOAD_ALBUM_SUCCESS = 'LOAD_ALBUM_SUCCESS';
-const LOAD_ALBUM_ERROR = 'LOAD_ALBUM_ERROR';
-const UPDATE_CURRENT_IMAGE = 'UPDATE_CURRENT_IMAGE';
+import axios from 'axios';
+import * as types from './../constants/ActionTypes';
+// import ip from 'ip';
+// const ipAddress = ip.address();
 
 export function requestAlbumData() {
   return {
-    type: LOAD_ALBUM_REQUEST,
+    type: types.LOAD_ALBUM_REQUEST,
   };
 }
 
 export function receiveAlbumData(json) {
   return {
-    type: LOAD_ALBUM_SUCCESS,
+    type: types.LOAD_ALBUM_SUCCESS,
     albumName: json.album.name,
     photos: json.photos,
   };
@@ -22,18 +26,17 @@ export function receiveAlbumData(json) {
 
 export function errorLoadingAlbum(error) {
   return {
-    type: LOAD_ALBUM_ERROR,
+    type: types.LOAD_ALBUM_ERROR,
     error: error,
   };
 }
 
 export function updateCurrentImage(id) {
   return {
-    type: UPDATE_CURRENT_IMAGE,
+    type: types.UPDATE_CURRENT_IMAGE,
     id: id,
   };
 }
-
 
 // Initialize our app state with the images
 export function initApp() {

@@ -21,7 +21,7 @@ build/
 
 # Dependency directories
 node_modules/
-bower_components/
+build/
 
 .DS_Store
 

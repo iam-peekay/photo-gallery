@@ -1,3 +1,3 @@
-module.exports = require("./generateWebpack")({
+module.exports = require('./generateWebpack')({
   prod: false
 });

@@ -90,5 +90,4 @@ describe('album reducer', () => {
 
     expect(album(stateBefore, action)).toEqual(stateAfter);
   });
-
 });

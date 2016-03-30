@@ -47,7 +47,7 @@ class GalleryPage extends Component {
     dispatch(action);
   }
 
-  // Renders our main image container, including header, footer and arrows
+  // Renders our current image container, including header, footer and arrows
   renderImage() {
     const currentImageUrl = `src/images/${this.props.currentImage.url}`;
 
@@ -67,6 +67,7 @@ class GalleryPage extends Component {
     );
   }
 
+  // Renders main image container and thumbnails list
   render() {
     return (
       <div className="container-fluid galleryContainer">
@@ -95,7 +96,7 @@ GalleryPage.propTypes = {
 };
 
 
-// Here we define the state variables that we want access to as props
+// Here we define the state variables that we want access as props
 function select(state) {
   return {
     albumName: state.album.albumName !== undefined ? state.album.albumName : 'Default',
