@@ -24,6 +24,7 @@ node_modules/
 build/
 
 .DS_Store
+NOTE.md
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
