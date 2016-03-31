@@ -21,6 +21,10 @@ describe('<ThumbnailList /> component', function() {
     expect(this.component.find(Thumbnail)).to.have.lengthOf(albumJSON.photos.length);
   });
 
+  it('renders 1 div with className of thumbnailDiv', function() {
+    expect(this.component.find('.thumbnailDiv')).to.have.lengthOf(6);
+  });
+
   it('renders 1 div with className of thumbnailContainer', function() {
     expect(this.component.find('.thumbnailContainer')).to.have.lengthOf(1);
   });
@@ -61,25 +65,3 @@ describe('<Thumbnail /> component', function() {
     expect(component.find('.imageNotHighlight')).to.have.lengthOf(0);
   });
 });
-
-//
-// describe('<GalleryPage /> component', function() {
-//
-//   beforeEach(function() {
-//     this.component = shallow(
-//           <GalleryPage
-//             photos={albumJSON.photos}
-//             currentImage={albumJSON.photos[0]}
-//             albumName={albumJSON.album.name}
-//             store={store}
-//            />);
-//   });
-//
-//   it('has photos prop which is an array of length 6', function() {
-//     expect(this.component.props().photos).to.be.instanceof(Array);
-//     expect(this.component.props().photos).to.have.lengthOf(6);
-//   });
-//
-//   it('renders 1 div with className of thumbnailContainer', function() {
-//     expect(this.component.props().currentImage).to.contain.all.keys(['id', 'url', 'thumb_url', 'date', 'title', 'location']);
-//   });

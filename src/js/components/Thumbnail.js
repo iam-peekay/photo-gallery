@@ -11,7 +11,7 @@ export default class Thumbnail extends Component {
   }
 
   handleClick() {
-    this.props.handleThumbnailClick(this.props.imageid);
+    this.props.handleThumbnailClick(Number(this.props.imageid));
   }
 
   render() {
@@ -21,14 +21,15 @@ export default class Thumbnail extends Component {
       set its css class to be "imageHighlight". If not current image,
       set its css class to be "imageNotHighlight"
     */
-    const thumbImageUrl = require(`./../../images/${this.props.image.thumb_url}`);
+    // Requiring the image in-line won't work with Enzyme testing, unfortunately
+    // const thumbImageUrl = require(`./../../images/${this.props.image.thumb_url}`);
     const image = this.props.highlightedImage ? (<img
                                                   className="thumbnailImage imageHighlight"
-                                                  src={thumbImageUrl}
+                                                  src={`src/images/${this.props.image.thumb_url}`}
                                                   onClick={this.handleClick} />) : (
                                                  <img
                                                   className="thumbnailImage imageNotHighlight"
-                                                  src={thumbImageUrl}
+                                                  src={`src/images/${this.props.image.thumb_url}`}
                                                   onClick={this.handleClick} />);
     return image;
   }

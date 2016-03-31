@@ -101,10 +101,21 @@ GalleryPage.propTypes = {
 
 // Here we define the state variables that we want access as props
 function select(state) {
+  // Because the initial state hydration requires an asynchronous call, we
+  // should set a default currentImage so that the user is not left hanging
+  // with a blank screen until the initial state of the app hydrates.
+  const defaultCurrentImage = {
+    'id': '1',
+    'url': 'test_images/image1.jpg',
+    'thumb_url': 'test_images/thumb1.jpg',
+    'title': 'Mountain Tunnel',
+    'date': 'December 15, 2009',
+    'location': 'the Rocky Mountains'
+  };
   return {
     albumName: state.album.albumName !== undefined ? state.album.albumName : 'Default',
     photos: state.album.photos !== undefined ? state.album.photos : [],
-    currentImage: state.album.currentImage !== undefined ? state.album.currentImage : {},
+    currentImage: state.album.currentImage !== undefined ? state.album.currentImage : defaultCurrentImage,
   };
 }
 

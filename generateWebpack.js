@@ -21,7 +21,7 @@ module.exports = function(options) {
       path: path.join(__dirname, 'build'),
       filename: 'js/bundle.js', // in js folder as bundle.js
     };
-    cssLoaders = ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader');
+    cssLoaders = ExtractTextPlugin.extract('style-loader', 'css-loader!');
     // Define plugins we want to use
     plugins = [
       new webpack.optimize.UglifyJsPlugin({ // Optimize the JavaScript
@@ -66,7 +66,7 @@ module.exports = function(options) {
       publicPath: '/build/',
     };
 
-    cssLoaders = 'style-loader!css-loader!postcss-loader';
+    cssLoaders = 'style-loader!css-loader!';
     // Hot module replacement plugin
     plugins = [
       new webpack.HotModuleReplacementPlugin(), // Make hot loading work
@@ -97,22 +97,3 @@ module.exports = function(options) {
     progress: true
   };
 };
-
-// postcss: function() {
-//   return [
-//     require('postcss-import')({ // Import all the css files...
-//       glob: true,
-//       onImport: function (files) {
-//           files.forEach(this.addDependency); // ...and add dependecies from the main.css files to the other css files...
-//       }.bind(this) // ...so they get hot–reloaded when something changes...
-//     }),
-//     require('postcss-simple-vars')(), // ...then replace the variables...
-//     require('postcss-focus')(), // ...add a :focus to ever :hover...
-//     require('autoprefixer')({ // ...and add vendor prefixes...
-//       browsers: ['last 2 versions', 'IE > 8'] // ...supporting the last 2 major browser versions and IE 8 and up...
-//     }),
-//     require('postcss-reporter')({ // This plugin makes sure we get warnings in the console
-//       clearMessages: true
-//     })
-//   ];
-// },
