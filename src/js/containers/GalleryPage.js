@@ -49,15 +49,18 @@ class GalleryPage extends Component {
 
   // Renders our current image container, including header, footer and arrows
   renderImage() {
-    const currentImageUrl = `src/images/${this.props.currentImage.url}`;
+    // Inline our images
+    const currentImageUrl = require(`./../../images/${this.props.currentImage.url}`);
+    const rightArrowUrl = require('./../../images/right.png');
+    const leftArrowUrl = require('./../../images/left.png');
 
     return (
       <div>
         <div className="currentImageContainer">
           <img src={currentImageUrl} className="currentImage" />
           <p className="imageHeader" >{this.props.albumName}</p>
-          <img src="src/images/right.png" className="rightArrow" onClick={this.goToNext}/>
-          <img src="src/images/left.png" className="leftArrow" onClick={this.goToPrev}/>
+          <img src={rightArrowUrl} className="rightArrow" onClick={this.goToNext}/>
+          <img src={leftArrowUrl} className="leftArrow" onClick={this.goToPrev}/>
           <div className="imageFooter">
             <p className="imageFooterTitle"> {this.props.currentImage.title}</p>
             <p className="imageFooterBody">Taken on {this.props.currentImage.date} in the {this.props.currentImage.location}</p>

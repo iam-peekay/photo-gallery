@@ -1,7 +1,8 @@
 /*
-  Here we define the main reducer which is responsible for updating
-  our state. Reducers are the thing that are allowed to update state
-  in Redux.
+  Here we define the main reducer. Reducers are just pure functions that
+  take the previous state and an action and return the next state.
+  Reducers always return new state objects, instead of mutating the
+  previous state.
 */
 
 import { filter, merge } from 'lodash';

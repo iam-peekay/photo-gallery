@@ -21,13 +21,14 @@ export default class Thumbnail extends Component {
       set its css class to be "imageHighlight". If not current image,
       set its css class to be "imageNotHighlight"
     */
+    const thumbImageUrl = require(`./../../images/${this.props.image.thumb_url}`);
     const image = this.props.highlightedImage ? (<img
                                                   className="thumbnailImage imageHighlight"
-                                                  src={`src/images/${this.props.image.thumb_url}`}
+                                                  src={thumbImageUrl}
                                                   onClick={this.handleClick} />) : (
                                                  <img
                                                   className="thumbnailImage imageNotHighlight"
-                                                  src={`src/images/${this.props.image.thumb_url}`}
+                                                  src={thumbImageUrl}
                                                   onClick={this.handleClick} />);
     return image;
   }

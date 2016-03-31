@@ -37,7 +37,6 @@ module.exports = function(options) {
           removeRedundantAttributes: true,
           useShortDoctype: true,
           removeEmptyAttributes: true,
-          removeStyleLinkTypeAttributes: true,
           keepClosingSlash: true,
           minifyJS: true,
           minifyCSS: true,
